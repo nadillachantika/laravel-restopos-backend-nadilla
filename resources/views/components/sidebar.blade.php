@@ -17,7 +17,7 @@
 
                 </ul>
             </li>
-            <li class="menu-header">Users</li>
+            <li class="menu-header">Menu</li>
             <li class="nav-item dropdown">
                 <a href="#" class="nav-link has-dropdown"><i class="fas fa-fire"></i><span>Users</span></a>
                 <ul class="dropdown-menu">
@@ -28,12 +28,20 @@
                 </ul>
             </li>
 
-            <li class="menu-header">Categorys</li>
             <li class="nav-item dropdown">
-                <a href="#" class="nav-link has-dropdown"><i class="fas fa-fire"></i><span>Categorys</span></a>
+                <a href="#" class="nav-link has-dropdown"><i class="fas fa-fire"></i><span>Categories</span></a>
                 <ul class="dropdown-menu">
                     <li>
-                        <a class="nav-link" href="{{ route('category.index') }}">All Category</a>
+                        <a class="nav-link" href="{{ route('category.index') }}">All Categories</a>
+                    </li>
+
+                </ul>
+            </li>
+            <li class="nav-item dropdown">
+                <a href="#" class="nav-link has-dropdown"><i class="fas fa-fire"></i><span>Products</span></a>
+                <ul class="dropdown-menu">
+                    <li>
+                        <a class="nav-link" href="{{ route('product.index') }}">All Products</a>
                     </li>
 
                 </ul>

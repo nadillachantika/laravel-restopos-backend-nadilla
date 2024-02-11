@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Category;
+use App\Models\Product;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -12,15 +14,8 @@ class ProductController extends Controller
      */
     public function index(Request $request)
     {
-        $products = DB::table('products')
-        ->when($request->input('name'), function ($query, $name) {
-            return $query->where('name', 'like', '%' . $name . '%');
-        })
-        ->paginate(5);
-
-
+        $products = Product::paginate(5);
         return view('pages.product.index', compact('products'));
-
     }
 
     /**
@@ -28,7 +23,8 @@ class ProductController extends Controller
      */
     public function create()
     {
-        //
+        $categories = Category::all();
+        return view('pages.product.create', compact('categories'));
     }
 
     /**
@@ -36,7 +32,20 @@ class ProductController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $filename = time() . '.' . $request->image->extension();
+        $request->image->storeAs('public/products', $filename);
+
+        $product = new \App\Models\Product;
+        $product->name = $request->name;
+        $product->description = $request->description;
+        $product->price = (int) $request->price;
+        $product->stock = (int) $request->stock;
+        $product->category_id = $request->category_id;
+        $product->image = $filename;
+        $product->save();
+
+        return redirect()->route('product.index')->with('success', 'Product successfully created');
+
     }
 
     /**

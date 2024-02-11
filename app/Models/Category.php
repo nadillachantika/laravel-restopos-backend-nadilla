@@ -15,4 +15,6 @@ class Category extends Model
         'image',
 
     ];
+
+    
 }
