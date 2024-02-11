@@ -1,7 +1,7 @@
 <div class="main-sidebar sidebar-style-2">
     <aside id="sidebar-wrapper">
         <div class="sidebar-brand">
-            <a href="index.html">Resto POS</a>
+            <a href="index.html">InnoDev POS</a>
         </div>
         <div class="sidebar-brand sidebar-brand-sm">
             <a href="index.html">St</a>
@@ -23,6 +23,17 @@
                 <ul class="dropdown-menu">
                     <li>
                         <a class="nav-link" href="{{ route('user.index') }}">All Users</a>
+                    </li>
+
+                </ul>
+            </li>
+
+            <li class="menu-header">Categorys</li>
+            <li class="nav-item dropdown">
+                <a href="#" class="nav-link has-dropdown"><i class="fas fa-fire"></i><span>Categorys</span></a>
+                <ul class="dropdown-menu">
+                    <li>
+                        <a class="nav-link" href="{{ route('category.index') }}">All Category</a>
                     </li>
 
                 </ul>
