@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title', 'Users')
+@section('title', 'Products')
 
 @push('style')
     <!-- CSS Libraries -->
@@ -27,13 +27,8 @@
                         @include('layouts.alert')
                     </div>
                 </div>
-                <h2 class="section-title">Products</h2>
-                <p class="section-lead">
-                    You can manage all Users, such as editing, deleting and more.
-                </p>
 
-
-                <div class="row mt-4">
+                <div class="row mt-2">
                     <div class="col-12">
                         <div class="card">
                             <div class="card-header">
@@ -57,10 +52,10 @@
                                     <table class="table-striped table">
                                         <tr>
 
+                                            <th></th>
                                             <th>Name</th>
                                             <th>Category</th>
                                             <th>Description</th>
-                                            <th>Image</th>
                                             <th>Price</th>
                                             <th>Stock</th>
                                             <th>Action</th>
@@ -68,6 +63,14 @@
                                         @foreach ($products as $product)
                                             <tr>
 
+                                                <td>
+                                                    @if ($product->image)
+                                                    <img src="{{ asset('storage/products/'.$product->image) }}" alt=""
+                                                        width="100px" class="img-thumbnail">
+                                                        @else
+                                                        <span class="badge badge-danger">No Image</span>
+                                                   @endif
+                                                </td>
                                                 <td>{{ $product->name }}
                                                 </td>
 
@@ -76,9 +79,7 @@
                                                 <td>
                                                     {{ $product->description }}
                                                 </td>
-                                                <td>
-                                                    {{ $product->image }}
-                                                </td>
+
                                                 <td>
                                                     {{ $product->price }}
                                                 </td>
