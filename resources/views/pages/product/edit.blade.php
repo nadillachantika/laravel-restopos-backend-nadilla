@@ -13,12 +13,12 @@
 @endpush
 
 @section('main')
-<style>
-    .img-holder img {
-        max-width: 150px;
-        max-height: 150px;
-    }
-</style>
+    <style>
+        .img-holder img {
+            max-width: 150px;
+            max-height: 150px;
+        }
+    </style>
     <div class="main-content">
         <section class="section">
             <div class="section-header">
@@ -36,8 +36,9 @@
 
 
                 <div class="card">
-                    <form action="{{ route('product.store') }}" method="POST" enctype="multipart/form-data">
+                    <form action="{{ route('product.update', $product) }}" method="POST" enctype="multipart/form-data">
                         @csrf
+                        @method('PUT')
                         <div class="card-header">
                             <h4>Input Text</h4>
                         </div>
@@ -48,7 +49,7 @@
                                     class="form-control @error('name')
                                 is-invalid
                             @enderror"
-                                    name="name" value="{{$product->name}}">
+                                    name="name" value="{{ $product->name }}">
                                 @error('name')
                                     <div class="invalid-feedback">
                                         {{ $message }}
@@ -61,7 +62,7 @@
                                     class="form-control @error('description')
                                 is-invalid
                             @enderror"
-                                    name="description" value="{{$product->description}}">
+                                    name="description" value="{{ $product->description }}">
                                 @error('name')
                                     <div class="invalid-feedback">
                                         {{ $message }}
@@ -74,7 +75,7 @@
                                     class="form-control @error('price')
                                 is-invalid
                             @enderror"
-                                    name="price" value="{{$product->price}}">
+                                    name="price" value="{{ $product->price }}">
                                 @error('price')
                                     <div class="invalid-feedback">
                                         {{ $message }}
@@ -87,7 +88,7 @@
                                     class="form-control @error('stock')
                                 is-invalid
                             @enderror"
-                                    name="stock" value="{{$product->stock}}">
+                                    name="stock" value="{{ $product->stock }}">
                                 @error('stock')
                                     <div class="invalid-feedback">
                                         {{ $message }}
@@ -97,10 +98,13 @@
 
                             <div class="form-group">
                                 <label class="form-label">Category</label>
-                                <select name="category_id" class="form-control selectric @error('category_id') is-invalid @enderror" id="">
+                                <select name="category_id"
+                                    class="form-control selectric @error('category_id') is-invalid @enderror"
+                                    id="">
                                     <option value="">--Select Category--</option>
                                     @foreach ($categories as $category)
-                                        <option value="{{ $category->id }}" {{ old('category_id', $product->category_id) == $category->id ? 'selected' : '' }}>
+                                        <option value="{{ $category->id }}"
+                                            {{ old('category_id', $product->category_id) == $category->id ? 'selected' : '' }}>
                                             {{ $category->name }}
                                         </option>
                                     @endforeach
@@ -112,28 +116,24 @@
                                 @enderror
                             </div>
 
-
                             <div class="form-group">
                                 <label>Photo Product</label>
-                                <input type="file" class="form-control" name="image"  onchange="previewImageUpdate(event)"
-                                        @error('image') is-invalid @enderror>
-                                    @error('image')
-                                        <div class="invalid-feedback">
-                                            {{ $message }}
-                                        </div>
-                                    @enderror
+                                <input type="file" class="form-control" name="image"
+                                    onchange="previewImageUpdate(event)" @error('image') is-invalid @enderror>
+                                @error('image')
+                                    <div class="invalid-feedback">
+                                        {{ $message }}
+                                    </div>
+                                @enderror
                             </div>
                             <div class="img-holder">
-                                @if($product->image)
-                                    <img src="{{ asset('storage/products/' . $product->image) }}" alt="Product Image" id="preview_image_up" >
+                                @if ($product->image)
+                                    <img src="{{ asset('storage/products/' . $product->image) }}" alt="Product Image"
+                                        id="preview_image_up">
                                 @else
                                     <img src="{{ asset('placeholder.jpg') }}" alt="Placeholder Image">
                                 @endif
                             </div>
-
-
-
-
                         </div>
                         <div class="card-footer text-right">
                             <button class="btn btn-primary">Submit</button>
@@ -147,14 +147,14 @@
 @endsection
 
 @push('scripts')
-<script>
-    function previewImageUpdate(event) {
-        var reader = new FileReader();
-        reader.onload = function() {
-            var output = document.getElementById('preview_image_up');
-            output.src = reader.result;
+    <script>
+        function previewImageUpdate(event) {
+            var reader = new FileReader();
+            reader.onload = function() {
+                var output = document.getElementById('preview_image_up');
+                output.src = reader.result;
+            }
+            reader.readAsDataURL(event.target.files[0]);
         }
-        reader.readAsDataURL(event.target.files[0]);
-    }
-</script>
+    </script>
 @endpush
