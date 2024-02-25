@@ -119,7 +119,7 @@
                             <div class="form-group">
                                 <label>Photo Product</label>
                                 <input type="file" class="form-control" name="image"
-                                    onchange="previewImageUpdate(event)" @error('image') is-invalid @enderror>
+                                      onchange="previewImageUpdate(event)" @error('image') is-invalid @enderror>
                                 @error('image')
                                     <div class="invalid-feedback">
                                         {{ $message }}

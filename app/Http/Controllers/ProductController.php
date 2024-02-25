@@ -47,7 +47,6 @@ class ProductController extends Controller
         $product->save();
 
         return redirect()->route('product.index')->with('success', 'Product successfully created');
-
     }
 
     /**
@@ -65,7 +64,7 @@ class ProductController extends Controller
     {
         $product = Product::findOrfail($id);
         $categories = Category::all();
-        return view('pages.product.edit', compact('categories','product'));
+        return view('pages.product.edit', compact('categories', 'product'));
     }
 
     /**
@@ -121,5 +120,12 @@ class ProductController extends Controller
         $user = Product::findOrFail($id);
         $user->delete();
         return redirect()->route('product.index');
+    }
+
+    public function get()
+    {
+        $products = Product::all();
+        $products->load('category');
+        return response()->json(['status'=>200, 'data' => $products], 200);
     }
 }
