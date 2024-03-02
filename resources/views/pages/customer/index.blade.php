@@ -51,40 +51,20 @@
                                 <div class="table-responsive">
                                     <table class="table-striped table">
                                         <tr>
-
-                                            <th></th>
                                             <th>Name</th>
-                                            <th>Category</th>
-                                            <th>Description</th>
-                                            <th>Price</th>
-                                            <th>Stock</th>
+                                            <th>Email</th>
+                                            <th>Phone</th>
                                             <th>Action</th>
                                         </tr>
                                         @foreach ($customers as $customer)
                                             <tr>
-
-                                                <td>
-                                                    @if ($customer->image)
-                                                    <img src="{{ asset('storage/customers/'.$customer->image) }}" alt=""
-                                                        width="100px" class="img-thumbnail">
-                                                        @else
-                                                        <span class="badge badge-danger">No Image</span>
-                                                   @endif
-                                                </td>
                                                 <td>{{ $customer->name }}
                                                 </td>
-
-                                                <td>{{ $customer->category->name }}
+                                                <td>
+                                                    {{ $customer->email}}
                                                 </td>
                                                 <td>
-                                                    {{ $customer->description }}
-                                                </td>
-
-                                                <td>
-                                                    {{ $customer->price }}
-                                                </td>
-                                                <td>
-                                                    {{ $customer->stock }}
+                                                    {{ $customer->phone_number}}
                                                 </td>
                                                 <td>
                                                     <div class="d-flex justify-content-center">
@@ -94,8 +74,8 @@
                                                             Edit
                                                         </a>
 
-                                                        <form action="{{ route('customer.destroy', $customer->id) }}" method="POST"
-                                                            class="ml-2">
+                                                        <form action="{{ route('customer.destroy', $customer->id) }}"
+                                                            method="POST" class="ml-2">
                                                             <input type="hidden" name="_method" value="DELETE" />
                                                             <input type="hidden" name="_token"
                                                                 value="{{ csrf_token() }}" />

@@ -13,12 +13,12 @@
 @endpush
 
 @section('main')
-<style>
-    .img-holder img {
-        max-width: 150px;
-        max-height: 150px;
-    }
-</style>
+    <style>
+        .img-holder img {
+            max-width: 150px;
+            max-height: 150px;
+        }
+    </style>
     <div class="main-content">
         <section class="section">
             <div class="section-header">
@@ -32,9 +32,6 @@
 
             <div class="section-body">
                 <h2 class="section-title">Customer</h2>
-
-
-
                 <div class="card">
                     <form action="{{ route('customer.store') }}" method="POST" enctype="multipart/form-data">
                         @csrf
@@ -70,21 +67,7 @@
                             </div>
                             <div class="form-group">
                                 <label>Phone</label>
-                                <input type="number" class="form-control" name="phone">
-                            </div>
-                            <div class="form-group">
-                                <label>Photo customer</label>
-                                <input type="file" class="form-control" name="image"  onchange="previewImage(event)"
-                                        @error('image') is-invalid @enderror>
-                                    @error('image')
-                                        <div class="invalid-feedback">
-                                            {{ $message }}
-                                        </div>
-                                    @enderror
-                            </div>
-
-                            <div class="img-holder" style="width:150px; height: 150px">
-                                <img id="preview_image" src="" alt="Preview Image">
+                                <input type="number" class="form-control" name="phone_number">
                             </div>
 
                         </div>
