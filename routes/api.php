@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Api\OrderController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\ProductController;
 use Illuminate\Http\Request;
@@ -26,4 +27,6 @@ Route::get('/logout', [AuthController::class, 'logout'])->middleware('auth:sanct
 
 
 Route::get('/getProduct', [ProductController::class, 'get'])->middleware('auth:sanctum');
+// orders api
+Route::post('/saveOrder', [OrderController::class, 'saveOrder'])->middleware('auth:sanctum');
 
