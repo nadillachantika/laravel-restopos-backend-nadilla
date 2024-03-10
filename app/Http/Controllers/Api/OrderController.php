@@ -29,15 +29,15 @@ class OrderController extends Controller
 
         $order = Order::create([
             'payment_amount' => $request->payment_amount,
-            'sub_total' => $request->subtotal,
+            'sub_total' => $request->sub_total,
             'tax' => $request->tax,
             'discount' => $request->discount,
             'service_charge' => $request->service_charge,
             'total' => $request->total,
             'payment_method' => $request->payment_method,
             'total_item' => $request->total_item,
-            'id_kasir' => $request->kasir_id,
-            'nama_kasir' => $request->kasir_name,
+            'id_kasir' => $request->id_kasir,
+            'nama_kasir' => $request->nama_kasir,
             'transaction_time' => $request->transaction_time,
         ]);
 
