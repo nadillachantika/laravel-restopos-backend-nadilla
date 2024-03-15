@@ -62,7 +62,15 @@ class CustomerController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $request->validate([
+            'name' => 'required',
+            'email' => 'required',
+            'phone_number' => 'required'
+        ]);
+
+        $customer = Customer::findOrfail($id);
+        $customer->update($request->all());
+        return redirect()->route('customer.index')->with('success', 'Customer successfully updated');
     }
 
     /**
@@ -70,6 +78,9 @@ class CustomerController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        $user = Customer::findOrFail($id);
+        $user->delete();
+        return redirect()->route('customer.index');
+
     }
 }

@@ -13,7 +13,24 @@ class DiscountController extends Controller
     public function index()
     {
         $discounts = Discount::all();
-        return response(['message' => 'success', 'data'=>$discounts], 200);
+        return response(['message' => 'success', 'data' => $discounts], 200);
     }
-    
+
+    // store
+    public function store(Request $request)
+    {
+
+        $request->validate([
+            'name' => 'required',
+            'description' => 'nullable',
+            'type' => 'required',
+            'value' => 'required',
+            'status' => 'nullable|in:active,inactive',
+            'expired_date' => 'nullable'
+        ]);
+
+        $discounts = Discount::create($request->all());
+
+        return response()->json(['status' => 'success', 'data' => $discounts], 200);
+    }
 }

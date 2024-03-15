@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Api\CustomerController;
 use App\Http\Controllers\Api\DiscountController;
 use App\Http\Controllers\Api\OrderController;
 use App\Http\Controllers\AuthController;
@@ -31,4 +32,10 @@ Route::get('/getProduct', [ProductController::class, 'get'])->middleware('auth:s
 Route::get('/getDiscounts', [DiscountController::class, 'index'])->middleware('auth:sanctum');
 // orders api
 Route::post('/saveOrder', [OrderController::class, 'saveOrder'])->middleware('auth:sanctum');
+Route::post('/saveDiscount', [DiscountController::class, 'store'])->middleware('auth:sanctum');
+
+Route::get('/getCustomers', [CustomerController::class, 'index'])->middleware('auth:sanctum');
+Route::post('/storeCustomer', [CustomerController::class, 'store'])->middleware('auth:sanctum');
+Route::post('/updateCustomer/{id}', [CustomerController::class, 'update'])->middleware('auth:sanctum');
+Route::get('/deleteCustomer/{id}', [CustomerController::class, 'destroy'])->middleware('auth:sanctum');
 

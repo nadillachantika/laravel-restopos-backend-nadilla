@@ -26,17 +26,14 @@
                 <div class="section-header-breadcrumb">
                     <div class="breadcrumb-item active"><a href="#">Dashboard</a></div>
                     <div class="breadcrumb-item"><a href="#">Forms</a></div>
-                    <div class="breadcrumb-item">Product</div>
+                    <div class="breadcrumb-item">Customer</div>
                 </div>
             </div>
 
             <div class="section-body">
-                <h2 class="section-title">Product</h2>
-
-
-
+                <h2 class="section-title">Customer</h2>
                 <div class="card">
-                    <form action="{{ route('product.update', $product) }}" method="POST" enctype="multipart/form-data">
+                    <form action="{{ route('customer.update', $customer) }}" method="POST" enctype="multipart/form-data">
                         @csrf
                         @method('PUT')
                         <div class="card-header">
@@ -49,7 +46,7 @@
                                     class="form-control @error('name')
                                 is-invalid
                             @enderror"
-                                    name="name" value="{{ $product->name }}">
+                                    name="name" value="{{ $customer->name }}">
                                 @error('name')
                                     <div class="invalid-feedback">
                                         {{ $message }}
@@ -57,84 +54,25 @@
                                 @enderror
                             </div>
                             <div class="form-group">
-                                <label>Description</label>
-                                <input type="text"
-                                    class="form-control @error('description')
+                                <label>Email</label>
+                                <input type="email"
+                                    class="form-control @error('email')
                                 is-invalid
                             @enderror"
-                                    name="description" value="{{ $product->description }}">
-                                @error('name')
+                                    name="email" value="{{ $customer->email }}">
+                                @error('email')
                                     <div class="invalid-feedback">
                                         {{ $message }}
                                     </div>
                                 @enderror
                             </div>
                             <div class="form-group">
-                                <label>Price</label>
-                                <input type="number"
-                                    class="form-control @error('price')
-                                is-invalid
-                            @enderror"
-                                    name="price" value="{{ $product->price }}">
-                                @error('price')
-                                    <div class="invalid-feedback">
-                                        {{ $message }}
-                                    </div>
-                                @enderror
-                            </div>
-                            <div class="form-group">
-                                <label>Stock</label>
-                                <input type="number"
-                                    class="form-control @error('stock')
-                                is-invalid
-                            @enderror"
-                                    name="stock" value="{{ $product->stock }}">
-                                @error('stock')
-                                    <div class="invalid-feedback">
-                                        {{ $message }}
-                                    </div>
-                                @enderror
+                                <label>Phone</label>
+                                <input type="number" class="form-control" name="phone_number" value="{{ $customer->phone_number }}">
                             </div>
 
-                            <div class="form-group">
-                                <label class="form-label">Category</label>
-                                <select name="category_id"
-                                    class="form-control selectric @error('category_id') is-invalid @enderror"
-                                    id="">
-                                    <option value="">--Select Category--</option>
-                                    @foreach ($categories as $category)
-                                        <option value="{{ $category->id }}"
-                                            {{ old('category_id', $product->category_id) == $category->id ? 'selected' : '' }}>
-                                            {{ $category->name }}
-                                        </option>
-                                    @endforeach
-                                </select>
-                                @error('category_id')
-                                    <div class="invalid-feedback">
-                                        {{ $message }}
-                                    </div>
-                                @enderror
-                            </div>
-
-                            <div class="form-group">
-                                <label>Photo Product</label>
-                                <input type="file" class="form-control" name="image"
-                                      onchange="previewImageUpdate(event)" @error('image') is-invalid @enderror>
-                                @error('image')
-                                    <div class="invalid-feedback">
-                                        {{ $message }}
-                                    </div>
-                                @enderror
-                            </div>
-                            <div class="img-holder">
-                                @if ($product->image)
-                                    <img src="{{ asset('storage/products/' . $product->image) }}" alt="Product Image"
-                                        id="preview_image_up">
-                                @else
-                                    <img src="{{ asset('placeholder.jpg') }}" alt="Placeholder Image">
-                                @endif
-                            </div>
                         </div>
+
                         <div class="card-footer text-right">
                             <button class="btn btn-primary">Submit</button>
                         </div>
@@ -144,7 +82,7 @@
             </div>
         </section>
     </div>
-@endsection
+@endsectionn
 
 @push('scripts')
     <script>
