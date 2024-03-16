@@ -28,8 +28,10 @@
             <div class="section-body">
                 <h2 class="section-title">Reservation</h2>
                 <div class="card">
-                    <form action="{{ route('reservation.store') }}" method="POST">
+                    <form action="{{ route('reservation.update', $reservation) }}" method="POST">
                         @csrf
+                        @method('PUT')
+
                         <div class="card-header">
                             <h4>Input Text</h4>
                         </div>
@@ -40,7 +42,7 @@
                                     class="form-control @error('customer_name')
                                 is-invalid
                             @enderror"
-                                    name="customer_name">
+                                    name="customer_name" value="{{ $reservation->customer_name }}">
                                 @error('cusomer_name')
                                     <div class="invalid-feedback">
                                         {{ $message }}
@@ -54,7 +56,7 @@
                                     class="form-control @error('customer_phone')
                                 is-invalid
                             @enderror"
-                                    name="customer_phone">
+                                    name="customer_phone" value="{{ $reservation->customer_phone }}">
                                 @error('customer_phone')
                                     <div class="invalid-feedback">
                                         {{ $message }}
@@ -64,7 +66,7 @@
 
                             <div class="form-group">
                                 <label>Tanggal Reservasi</label>
-                                <input class="form-control" type="date" id="reservation_date" name="reservation_date" required>
+                                <input class="form-control" type="date" id="reservation_date" value="{{ $reservation->reservation_date }}" name="reservation_date" required>
                                 @error('reservation_date')
                                     <div class="invalid-feedback">
                                         {{ $message }}
@@ -73,7 +75,7 @@
                             </div>
                             <div class="form-group">
                                 <label>Tanggal Reservasi</label>
-                                <input class="form-control" type="time" id="reservation_time" name="reservation_time" required>
+                                <input class="form-control" type="time" id="reservation_time" value="{{ $reservation->reservation_time }}" name="reservation_time" required>
                                 @error('reservation_time')
                                     <div class="invalid-feedback">
                                         {{ $message }}
@@ -86,7 +88,7 @@
                                     class="form-control @error('table_number')
                                 is-invalid
                             @enderror"
-                                    name="table_number">
+                                    name="table_number" value="{{ $reservation->table_number }}">
                                 @error('table_number')
                                     <div class="invalid-feedback">
                                         {{ $message }}
@@ -100,7 +102,7 @@
                                     class="form-control @error('notes')
                                 is-invalid
                             @enderror"
-                                    name="notes">
+                                    name="notes" value="{{ $reservation->notes }}">
                                 @error('notes')
                                     <div class="invalid-feedback">
                                         {{ $message }}

@@ -44,6 +44,8 @@ class ReservationController extends Controller
             'customer_phone' => 'required|string',
             'notes' => 'nullable|string',
             'table_number' => 'nullable|string',
+            'reservation_date' => 'required|date',
+            'reservation_time' => 'required',
         ]);
 
         // Generate a reservation code
@@ -71,7 +73,7 @@ class ReservationController extends Controller
         $randomString = Str::random(6);
 
         // Combine with current timestamp to ensure uniqueness
-        $timestamp = now()->format('YmdHis');
+        $timestamp = now()->format('Ymd');
 
         return 'RSV-' . $timestamp . '-' . $randomString;
     }
@@ -89,7 +91,15 @@ class ReservationController extends Controller
      */
     public function edit(string $id)
     {
-        //
+
+
+        $reservation = Reservation::findOrfail($id);
+
+
+
+        return view('pages.reservation.edit', compact('reservation'));
+
+
     }
 
     /**
@@ -97,7 +107,32 @@ class ReservationController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+
+      $request->validate([
+            'customer_name' => 'required|string',
+            'customer_phone' => 'required|string',
+            'notes' => 'nullable|string',
+            'table_number' => 'nullable|string',
+            'reservation_date' => 'required|date',
+            'reservation_time' => 'required',
+        ]);
+
+        $reservation = Reservation::findOrfail($id);
+
+        $reservation->customer_name = $request->customer_name;
+        $reservation->customer_phone = $request->customer_phone;
+        $reservation->notes = $request->notes;
+        $reservation->table_number = $request->table_number;
+        $reservation->reservation_date = $request->reservation_date;
+        $reservation->reservation_time = $request->reservation_time;
+
+        $reservation->save();
+
+        return redirect()->route('reservation.index')->with('success', 'Reservation successfully updated');
+
+
+
+
     }
 
     /**
@@ -105,6 +140,9 @@ class ReservationController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+
+        $user = Reservation::findOrFail($id);
+        $user->delete();
+        return redirect()->route('reservation.index');
     }
 }
