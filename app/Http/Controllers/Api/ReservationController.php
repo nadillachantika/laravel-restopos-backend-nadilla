@@ -27,7 +27,7 @@ class ReservationController extends Controller
             $reservation->customer_phone = $request->customer_phone;
             $reservation->reservation_code = $this->generateReservaitonCode();
             $reservation->reservation_datetime = $request->reservation_datetime;
-            $reservation->status = $request->status;
+            $reservation->status = 'pending';
             $reservation->notes = $request->notes;
             $reservation->table_number = $request->table_number;
 

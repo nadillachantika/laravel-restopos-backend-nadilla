@@ -13,12 +13,7 @@
 @endpush
 
 @section('main')
-    <style>
-        .img-holder img {
-            max-width: 150px;
-            max-height: 150px;
-        }
-    </style>
+
     <div class="main-content">
         <section class="section">
             <div class="section-header">
@@ -67,7 +62,7 @@
                                 @enderror
                             </div>
 
-                            <div class="form-group">
+                            {{-- <div class="form-group">
                                 <label>Tanggal dan Waktu Reservasi</label>
                                 <input class="form-control" type="datetime-local" id="reservation_datetime" name="reservation_datetime" required>
                                 @error('reservation_datetime')
@@ -75,10 +70,10 @@
                                         {{ $message }}
                                     </div>
                                 @enderror
-                            </div>
+                            </div> --}}
                             <div class="form-group">
                                 <label>Table Number</label>
-                                <input type="number"
+                                <input type="text"
                                     class="form-control @error('table_number')
                                 is-invalid
                             @enderror"
@@ -117,15 +112,3 @@
     </div>
 @endsection
 
-@push('scripts')
-    <script>
-        function previewImage(event) {
-            var reader = new FileReader();
-            reader.onload = function() {
-                var output = document.getElementById('preview_image');
-                output.src = reader.result;
-            }
-            reader.readAsDataURL(event.target.files[0]);
-        }
-    </script>
-@endpush
