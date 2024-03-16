@@ -3,6 +3,7 @@
 use App\Http\Controllers\Api\CustomerController;
 use App\Http\Controllers\Api\DiscountController;
 use App\Http\Controllers\Api\OrderController;
+use App\Http\Controllers\Api\ReservationController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\ProductController;
 use Illuminate\Http\Request;
@@ -38,4 +39,6 @@ Route::get('/getCustomers', [CustomerController::class, 'index'])->middleware('a
 Route::post('/storeCustomer', [CustomerController::class, 'store'])->middleware('auth:sanctum');
 Route::post('/updateCustomer/{id}', [CustomerController::class, 'update'])->middleware('auth:sanctum');
 Route::get('/deleteCustomer/{id}', [CustomerController::class, 'destroy'])->middleware('auth:sanctum');
+
+Route::post('/storeReservation', [ReservationController::class, 'store'])->middleware('auth:sanctum');
 
