@@ -52,4 +52,10 @@ class ReservationController extends Controller
 
         return 'RSV-'. $randomString;
     }
+
+    public function get()
+    {
+        $reservations = Reservation::all();
+        return response()->json(['status'=>200, 'data' => $reservations], 200);
+    }
 }

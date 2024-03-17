@@ -97,6 +97,20 @@
                             </div>
 
                             <div class="form-group">
+                                <label for="status">Status Reservasi</label>
+                                <select class="form-control @error('status') is-invalid @enderror" name="status" id="status">
+                                    <option value="pending"{{ old('status') == 'pending' ? ' selected' : '' }}>Menunggu Konfirmasi</option>
+                                    <option value="confirmed"{{ old('status') == 'confirmed' ? ' selected' : '' }}>Terkonfirmasi</option>
+                                    <option value="seated"{{ old('status') == 'seated' ? ' selected' : '' }}>Terkonfirmasi</option>
+                                    <option value="cancelled"{{ old('status') == 'cancelled' ? ' selected' : '' }}>Dibatalkan</option>
+                                    <option value="completed"{{ old('status') == 'completed' ? ' selected' : '' }}>Selesai</option>
+                                </select>
+                                @error('status')
+                                    <div class="invalid-feedback">{{ $message }}</div>
+                                @enderror
+                            </div>
+
+                            <div class="form-group">
                                 <label>Notes</label>
                                 <input type="text"
                                     class="form-control @error('notes')

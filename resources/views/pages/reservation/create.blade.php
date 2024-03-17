@@ -95,6 +95,20 @@
                             </div>
 
                             <div class="form-group">
+                                <label for="status">Status Reservasi</label>
+                                <select class="form-control @error('status') is-invalid @enderror" name="status" id="status">
+                                    <option value="pending">Menunggu Konfirmasi</option>
+                                    <option value="confirmed">Terkonfirmasi</option>
+                                    <option value="seated">Sudah Ditempati</option>
+                                    <option value="cancelled">Dibatalkan</option>
+                                    <option value="completed">Selesai</option>
+                                </select>
+                                @error('status')
+                                    <div class="invalid-feedback">{{ $message }}</div>
+                                @enderror
+                            </div>
+
+                            <div class="form-group">
                                 <label>Notes</label>
                                 <input type="text"
                                     class="form-control @error('notes')

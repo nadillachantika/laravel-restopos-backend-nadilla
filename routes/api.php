@@ -40,5 +40,7 @@ Route::post('/storeCustomer', [CustomerController::class, 'store'])->middleware(
 Route::post('/updateCustomer/{id}', [CustomerController::class, 'update'])->middleware('auth:sanctum');
 Route::get('/deleteCustomer/{id}', [CustomerController::class, 'destroy'])->middleware('auth:sanctum');
 
+Route::get('/getReservations', [ReservationController::class, 'get'])->middleware('auth:sanctum');
 Route::post('/storeReservation', [ReservationController::class, 'store'])->middleware('auth:sanctum');
+
 
