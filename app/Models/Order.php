@@ -39,4 +39,8 @@ class Order extends Model
         'nama_kasir',
         'transaction_time'
     ];
+
+    public function orderItems(){
+        return $this->hasMany(OrderItem::class, 'id_order');
+    }
 }

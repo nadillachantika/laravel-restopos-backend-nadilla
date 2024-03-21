@@ -52,4 +52,12 @@ class OrderController extends Controller
         }
         return response(['message' => 'success', 'data'=>$order], 200);
     }
+
+    public function getOrderDetail(){
+
+        $orderItem = OrderItem::all();
+        $orderItem->load(['product', 'order']);
+
+        return response(['message' => 'success', 'data'=>$orderItem], 200);
+    }
 }
