@@ -44,7 +44,7 @@ class ReservationController extends Controller
             'customer_phone' => 'required|string',
             'notes' => 'nullable|string',
             'table_number' => 'nullable|string',
-            'reservation_date' => 'required|date',
+            'reservation_date' => 'required',
             'reservation_time' => 'required',
         ]);
 

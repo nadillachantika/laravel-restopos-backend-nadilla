@@ -34,6 +34,7 @@ Route::get('/getDiscounts', [DiscountController::class, 'index'])->middleware('a
 // orders api
 Route::post('/saveOrder', [OrderController::class, 'saveOrder'])->middleware('auth:sanctum');
 Route::post('/saveDiscount', [DiscountController::class, 'store'])->middleware('auth:sanctum');
+Route::post('/updateDiscount/{id}', [DiscountController::class, 'update'])->middleware('auth:sanctum');
 
 Route::get('/getCustomers', [CustomerController::class, 'index'])->middleware('auth:sanctum');
 Route::post('/storeCustomer', [CustomerController::class, 'store'])->middleware('auth:sanctum');
@@ -41,7 +42,8 @@ Route::post('/updateCustomer/{id}', [CustomerController::class, 'update'])->midd
 Route::get('/deleteCustomer/{id}', [CustomerController::class, 'destroy'])->middleware('auth:sanctum');
 
 Route::get('/getReservations', [ReservationController::class, 'get'])->middleware('auth:sanctum');
-Route::post('/storeReservation', [ReservationController::class, 'store'])->middleware('auth:sanctum');
+Route::post('/saveReservation', [ReservationController::class, 'store'])->middleware('auth:sanctum');
+Route::post('/updateReservation/{id}', [ReservationController::class, 'updateReservation'])->middleware('auth:sanctum');
 
 Route::get('getOrderDetail', [OrderController::class, 'getOrderDetail'])->middleware('auth:sanctum');
 
