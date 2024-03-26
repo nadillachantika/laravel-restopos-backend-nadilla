@@ -70,7 +70,8 @@ class OrderController extends Controller
             'total_item' => 'required',
             'transaction_time' => 'required',
             'order_items' => 'nullable',
-            'order_type' => 'required|in:dinein,reservation'
+            'id_reservasi' => 'nullable',
+            'order_type' => 'nullable'
         ]);
 
         $orderData = [
@@ -85,6 +86,7 @@ class OrderController extends Controller
             'id_kasir' => $request->id_kasir,
             'nama_kasir' => $request->nama_kasir,
             'transaction_time' => $request->transaction_time,
+            'id_reservasi' => $request->id_reservasi,
             'order_type' => $request->order_type
         ];
 

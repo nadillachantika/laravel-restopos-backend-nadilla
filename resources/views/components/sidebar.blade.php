@@ -21,13 +21,13 @@
                 <a href="{{ route('product.index') }}" class="nav-link"><i class="fas fa-shopping-cart"></i><span>Products</span></a>
             </li>
 
-            <li>
+            {{-- <li>
                 <a href="{{ route('customer.index') }}" class="nav-link"><i class="fas fa-user"></i><span>Customers</span></a>
             </li>
 
             <li>
                 <a href="{{ route('reservation.index')}}" class="nav-link"><i class="fas fa-calendar-alt"></i><span>Reservations</span></a>
-            </li>
+            </li> --}}
 
 
     </aside>

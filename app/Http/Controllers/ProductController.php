@@ -67,7 +67,9 @@ class ProductController extends Controller
         return view('pages.product.edit', compact('categories', 'product'));
     }
 
-    /**
+    /**@cannot ('update', Model::class) 
+        
+    @endcannot
      * Update the specified resource in storage.
      */
     public function update(Request $request, $id)

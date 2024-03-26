@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Category;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -14,10 +15,10 @@ class CategoryController extends Controller
     {
 
         $categories = DB::table('categories')
-        ->when($request->input('name'), function ($query, $name) {
-            return $query->where('name', 'like', '%' . $name . '%');
-        })
-        ->paginate(5);
+            ->when($request->input('name'), function ($query, $name) {
+                return $query->where('name', 'like', '%' . $name . '%');
+            })
+            ->paginate(5);
 
 
         return view('pages.category.index', compact('categories'));
@@ -29,7 +30,6 @@ class CategoryController extends Controller
     public function create()
     {
         return view('pages.category.create');
-
     }
 
     /**
@@ -37,7 +37,17 @@ class CategoryController extends Controller
      */
     public function store(Request $request)
     {
-        //
+
+        $category = new Category;
+        $category->name = $request->name;
+        $category->description = $request->description;
+
+        $category->save();
+
+        return redirect()->route('category.index')->with('success', 'Category successfully created');
+
+
+
     }
 
     /**
@@ -51,24 +61,46 @@ class CategoryController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function edit($id)
     {
-        return view('pages.category.edit');
+        $category = Category::find($id);
+
+        return view('pages.category.edit', compact('category'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(Request $request,  $id)
     {
-        //
-    }
+        $request->validate([
+            'name' => 'required',
+            'description' => 'required',
 
+        ]);
+
+        $category = Category::find($id);
+
+        $category->update([
+            'name' => $request->name,
+            'description' => $request->description,
+
+        ]);
+        return redirect()->route('category.index')->with('success', 'Data Berhasil Di Ubah');
+
+    }
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy($id)
     {
-        //
+        $data = Category::find($id);
+
+        if (!$data) {
+            return redirect()->route('category.index')->with('error', 'Data Tidak Ditemukan');
+        }
+
+        $data->delete();
+        return redirect()->route('category.index')->with('success', 'Data Berhasil Di Hapus');
     }
 }
