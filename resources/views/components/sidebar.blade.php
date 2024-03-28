@@ -1,7 +1,7 @@
 <div class="main-sidebar sidebar-style-2">
     <aside id="sidebar-wrapper">
         <div class="sidebar-brand">
-            <a href="index.html">Nadilla's Resto POS</a>
+            <a href="index.html">EAZY POS</a>
         </div>
         <div class="sidebar-brand sidebar-brand-sm">
             <a href="index.html">St</a>
@@ -19,6 +19,11 @@
 
             <li>
                 <a href="{{ route('product.index') }}" class="nav-link"><i class="fas fa-shopping-cart"></i><span>Products</span></a>
+            </li>
+
+            <li>
+                <a href="{{ route('order.index') }}" class="nav-link"><i class="fas fa-list-alt"></i><span>Order</span></a>
+
             </li>
 
             {{-- <li>

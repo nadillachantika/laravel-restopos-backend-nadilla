@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\CustomerController;
+use App\Http\Controllers\OrderController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ReservationController;
 use App\Http\Controllers\UserController;
@@ -32,6 +33,7 @@ Route::middleware(['auth'])->group(function(){
     Route::resource('product', ProductController::class);
     Route::resource('customer', CustomerController::class);
     Route::resource('reservation', ReservationController::class);
+    Route::resource('order', OrderController::class);
 
 
 });
